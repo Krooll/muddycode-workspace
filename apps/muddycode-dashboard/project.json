@@ -1,0 +1,96 @@
+{
+  "name": "muddycode-dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/muddycode-dashboard/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/muddycode-dashboard",
+        "index": "apps/muddycode-dashboard/src/index.html",
+        "main": "apps/muddycode-dashboard/src/main.ts",
+        "tsConfig": "apps/muddycode-dashboard/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/muddycode-dashboard/public"
+          }
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+          "apps/muddycode-dashboard/src/styles.scss"
+        ],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/muddycode-dashboard/ngsw-config.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "muddycode-dashboard:build:production"
+        },
+        "development": {
+          "buildTarget": "muddycode-dashboard:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "muddycode-dashboard:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "muddycode-dashboard:build",
+        "port": 4200,
+        "spa": true
+      }
+    }
+  }
+}

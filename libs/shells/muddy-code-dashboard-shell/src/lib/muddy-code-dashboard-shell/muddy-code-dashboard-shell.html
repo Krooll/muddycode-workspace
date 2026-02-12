@@ -1,0 +1,45 @@
+<div #dashboard class="dashboard d-flex flex-column">
+  <div class="tabs-wrapper d-flex flex-row">
+    @for (app of openedApps; track app.id) {
+      <div class="single-tab d-flex align-items-center"
+        [class.active]="app.id === activeAppId"
+        (click)="focusApp(app.id)"
+        draggable="true"
+        (dragstart)="onDragStart($event, app)"
+        (dragend)="onDragEnd($event, app)">
+        <p class="me-3 fs-6">{{ app.name }}</p>
+        <span class="close close-app" (click)="closeApp(app.id); $event.stopPropagation()">✕</span>
+      </div>
+    }
+  </div>
+
+  <div class="main-content">
+    @if(activeAppId) {
+      @for (app of openedApps; track trackById($index, app)) {
+        @if(app.id === activeAppId) {
+          <iframe [src]="iframeUrls[app.id]" class="app-frame" frameborder="0"></iframe>
+        }
+      }
+    }
+    @else {
+      <router-outlet></router-outlet>
+    }
+  </div>
+
+  <div class="start-bar-wrapper d-flex justify-content-start align-items-center">
+    @if(showAppMenu()) {
+      <div #appWrapper class="app-wrapper d-flex flex-column">
+        @for (app of apps; track app.id) {
+          <button type="button" class="app-button" (click)="openApp(app)">
+            <p class="label text-center">{{ app.name }}</p>
+          </button>
+        }
+      </div>
+    } @else {
+      <button type="button" (click)="showMenuToggler()">
+        Start
+      </button>
+    }
+  </div>
+</div>
+
