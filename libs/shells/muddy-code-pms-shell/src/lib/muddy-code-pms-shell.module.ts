@@ -10,7 +10,20 @@ export const shellRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('@org/pms-technology').then((module) => module.PmsTechnologyModule),
+        pathMatch: 'full',
+        redirectTo: 'technology'
+      },
+      {
+        path: 'technology',
+        loadChildren: () =>
+          import('@org/pms-technology')
+            .then(m => m.PmsTechnologyModule),
+      },
+      {
+        path: 'dictionaries',
+        loadChildren: () =>
+          import('@org/pms-dictionaries')
+            .then(m => m.PmsDictionariesModule),
       }
     ]
   },
