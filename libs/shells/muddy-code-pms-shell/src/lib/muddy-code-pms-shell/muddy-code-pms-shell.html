@@ -1,6 +1,7 @@
 <div class="shell d-flex">
-  <div class="side-bar">
-    Podaplikacje
+  <div class="side-bar d-flex flex-column">
+    <button type="button" (click)="routeToSubpage('technology')">Technologia</button>
+    <button type="button" (click)="routeToSubpage('dictionaries')">Słowniki</button>
   </div>
   <div class="p-1">
     <router-outlet></router-outlet>

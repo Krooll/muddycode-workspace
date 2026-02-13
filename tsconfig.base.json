@@ -21,7 +21,9 @@
       "@org/muddy-code-wms-shell": [
         "libs/shells/muddy-code-wms-shell/src/index.ts"
       ],
-      "@org/muddy-code-dashboard-shell": ["libs/shells/muddy-code-dashboard-shell/src/index.ts"],
+      "@org/muddy-code-dashboard-shell": [
+        "libs/shells/muddy-code-dashboard-shell/src/index.ts"
+      ],
       "@org/dashboard-features": [
         "libs/features/dashboard-features/src/index.ts"
       ],
@@ -30,6 +32,9 @@
       ],
       "@org/wms-barcodes": [
         "libs/features/wms-features/wms-barcodes/src/index.ts"
+      ],
+      "@org/pms-dictionaries": [
+        "libs/features/pms-features/pms-dictionaries/src/index.ts"
       ]
     }
   },
